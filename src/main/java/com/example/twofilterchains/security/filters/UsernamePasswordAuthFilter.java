@@ -48,6 +48,7 @@ public class UsernamePasswordAuthFilter extends UsernamePasswordAuthenticationFi
         User user = (User) authResult.getPrincipal();
         String token = jwtService.generateToken(user);
 
+        // use ResponseCookie -> easier to use for storing cookie in frontend
         Cookie jwtCookie = new Cookie("jwt", token);
         jwtCookie.setHttpOnly(true);
         jwtCookie.setSecure(false); // true for production with HTTPS

@@ -6,7 +6,6 @@ import com.example.twofilterchains.service.AuthService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +26,8 @@ public class AuthEndpoint {
 
     @PostMapping("/api/logout")
     public ResponseEntity<?> logout(HttpServletResponse response) {
+
+        // use ResponseCookie -> easier to use for storing cookie in frontend
         Cookie jwtCookie = new Cookie("jwt", "");
         jwtCookie.setHttpOnly(true);
         jwtCookie.setSecure(false); // true in production https

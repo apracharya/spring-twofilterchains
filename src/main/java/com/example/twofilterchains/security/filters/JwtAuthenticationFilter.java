@@ -82,6 +82,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private void clearJwtCookie(HttpServletResponse response) {
+        // use ResponseCookie -> easier to use for storing cookie in frontend
         Cookie expiredCookie = new Cookie("jwt", "");
         expiredCookie.setHttpOnly(true);
         expiredCookie.setSecure(false); // true Only if using HTTPS
